@@ -1,0 +1,28 @@
+<div class="container">
+  <h1>AI Career Project Planner</h1>
+
+  <label>Resume Text</label>
+  <textarea name="resumeText" [(ngModel)]="resumeText" rows="10"></textarea>
+
+  <label>Desired Job Description</label>
+  <textarea name="jobText" [(ngModel)]="jobText" rows="10"></textarea>
+
+  <button type="button" (click)="analyze()">Analyze</button>
+
+  <div *ngIf="result">
+    <h2>Missing Skills</h2>
+    <ul>
+      <li *ngFor="let skill of result.missing_skills">
+        {{ skill }}
+      </li>
+    </ul>
+
+    <h2>Recommendations</h2>
+    <ul>
+      <li *ngFor="let rec of result.recommendations">
+        <strong>{{ rec.skill }}</strong>:
+        {{ rec.project }} — {{ rec.resource }}
+      </li>
+    </ul>
+  </div>
+</div>

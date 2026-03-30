@@ -1,0 +1,10 @@
+flask
+flask-cors
+python-dotenv
+numpy<2
+spacy==3.7.5
+scikit-learn
+sentence-transformers
+sqlalchemy
+pandas
+pytest
