@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
-from services.skill_gap_analysis import find_skill_gaps
-from services.recommender import generate_recommendations
+from backend.services.skill_gap_analysis import find_skill_gaps
+from backend.services.recommender import generate_recommendations
 
 recommendation_bp = Blueprint("recommendation_bp", __name__)
 
