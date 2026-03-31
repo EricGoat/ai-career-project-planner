@@ -6,3 +6,4 @@ dist/
 .env
 *.pyc
 *.db
+.DS_Store
