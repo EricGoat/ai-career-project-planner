@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from services.job_role_model import extract_job_skills
+from backend.services.job_role_model import extract_job_skills
 
 job_bp = Blueprint("job_bp", __name__)
 

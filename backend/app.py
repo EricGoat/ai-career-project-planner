@@ -1,8 +1,8 @@
 from flask import Flask
 from flask_cors import CORS
-from routes.resume_routes import resume_bp
-from routes.job_routes import job_bp
-from routes.recommendation_routes import recommendation_bp
+from .routes.resume_routes import resume_bp
+from .routes.job_routes import job_bp
+from .routes.recommendation_routes import recommendation_bp
 
 def create_app():
     app = Flask(__name__)
