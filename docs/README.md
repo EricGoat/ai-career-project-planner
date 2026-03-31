@@ -40,7 +40,7 @@ python -m spacy download en_core_web_sm
 
 ### 6. Create the database
 ```bash
-python -m spacy download en_core_web_sm
+python -m backend.models.database
 ```
 
 ## Frontend Setup
@@ -57,12 +57,12 @@ npm install
 
 ## Run Application
 
-### Terminal 1: Backend
+### Terminal 1: Backend (root dir)
 ```bash
 python -m backend.app
 ```
 
-### Terminal 2: Frontend
+### Terminal 2: Frontend (angular-app dir)
 ```bash
 ng serve
 ```
