@@ -4,6 +4,19 @@ import { FormsModule } from '@angular/forms'
 import { HttpClient } from '@angular/common/http'
 import { forkJoin, switchMap } from 'rxjs'
 
+ interface Recommendation {
+  skill: string[]
+  project: string
+  resource: string
+}
+
+interface Data {
+  resume_skills: string[]
+  job_skills: string[]
+  missing_skills: string[]
+  recommendations: Recommendation[]
+}
+
 @Component({
   selector: 'app-analyzer',
   standalone: true,
@@ -14,7 +27,7 @@ import { forkJoin, switchMap } from 'rxjs'
 export class AnalyzerComponent {
   resumeText = ''
   jobText = ''
-  result: any = null
+  result: Data | null = null
 
   constructor(
     private http: HttpClient,
