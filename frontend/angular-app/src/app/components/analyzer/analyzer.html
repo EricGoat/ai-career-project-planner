@@ -1,16 +1,18 @@
 <div class="container">
   <h1>AI Career Project Planner</h1>
 
-  <label>Resume Text</label>
-  <textarea name="resumeText" [(ngModel)]="resumeText" rows="10"></textarea>
+  <form [formGroup]="form" (ngSubmit)="analyze()">
+    <label for="resumeText">Resume Text</label>
+    <textarea id="resumeText" formControlName="resumeText" rows="10"></textarea>
 
-  <label>Desired Job Description</label>
-  <textarea name="jobText" [(ngModel)]="jobText" rows="10"></textarea>
+    <label for="jobText">Desired Job Description</label>
+    <textarea id="jobText" formControlName="jobText" rows="10"></textarea>
 
-  <button type="button" (click)="analyze()">Analyze</button>
+    <button type="submit">Analyze</button>
+  </form>
 
   @if (result; as data) {
-    <div >
+    <div class="results">
       <h2>Missing Skills</h2>
       <ul>
         @for (skill of data.missing_skills; track skill) {
