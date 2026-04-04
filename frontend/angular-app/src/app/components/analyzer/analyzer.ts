@@ -27,9 +27,9 @@ interface Data {
 export class AnalyzerComponent {
   private readonly fb = inject(FormBuilder)
   result: Data | null = null
+  selectedResumeFile: File | null = null
   readonly form = this.fb.nonNullable.group({
-    resumeText: ['', Validators.required],
-    jobText: ['', Validators.required]
+    targetRole: ['', Validators.required]
   })
 
   constructor(
@@ -37,17 +37,23 @@ export class AnalyzerComponent {
     private cdr: ChangeDetectorRef
   ) {}
 
+  onResumeFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement
+    this.selectedResumeFile = input.files?.[0] ?? null
+  }
+
   analyze() {
-    if (this.form.invalid) {
+    if (this.form.invalid || !this.selectedResumeFile) {
       this.form.markAllAsTouched()
       return
     }
 
     this.result = null
-    const { resumeText, jobText } = this.form.getRawValue()
+    const { targetRole } = this.form.getRawValue()
 
-    const resumePayload = { resume_text: resumeText }
-    const jobPayload = { job_text: jobText }
+    const resumePayload = new FormData()
+    resumePayload.append('resume_file', this.selectedResumeFile)
+    const jobPayload = { target_role: targetRole }
 
     forkJoin({
       resume: this.http.post<any>('http://127.0.0.1:5000/api/resume/parse', resumePayload),

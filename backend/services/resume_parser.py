@@ -1,7 +1,7 @@
 from backend.services.skill_extractor import SkillExtractor
-from backend.utils.skill_dictionary import KNOWN_SKILLS, SKILL_ALIASES
+from backend.services.dataset_skills import load_dataset_skills
 
-extractor = SkillExtractor(KNOWN_SKILLS, SKILL_ALIASES)
+extractor = SkillExtractor(load_dataset_skills())
 
 
 def extract_resume_skills(resume_text: str) -> list[str]:

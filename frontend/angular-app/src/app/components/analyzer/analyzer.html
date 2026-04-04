@@ -2,11 +2,16 @@
   <h1>AI Career Project Planner</h1>
 
   <form [formGroup]="form" (ngSubmit)="analyze()">
-    <label for="resumeText">Resume Text</label>
-    <textarea id="resumeText" formControlName="resumeText" rows="10"></textarea>
+    <label for="resumeFile">Resume File</label>
+    <input
+      id="resumeFile"
+      type="file"
+      accept=".txt,.md,.docx"
+      (change)="onResumeFileSelected($event)"
+    />
 
-    <label for="jobText">Desired Job Description</label>
-    <textarea id="jobText" formControlName="jobText" rows="10"></textarea>
+    <label for="targetRole">Target Job Role</label>
+    <input id="targetRole" type="text" formControlName="targetRole" />
 
     <button type="submit">Analyze</button>
   </form>
