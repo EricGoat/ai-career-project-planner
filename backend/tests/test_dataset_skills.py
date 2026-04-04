@@ -7,3 +7,4 @@ def test_load_dataset_skills_uses_job_dataset():
     assert skills
     assert "C#" in skills
     assert "SQL Server" in skills
+    assert "PHP" in skills

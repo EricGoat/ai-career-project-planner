@@ -19,11 +19,18 @@
   @if (result; as data) {
     <div class="results">
       <h2>Missing Skills</h2>
-      <ul>
-        @for (skill of data.missing_skills; track skill) {
-          <li> {{ skill }} </li>
+      <div class="category-grid">
+        @for (category of getVisibleCategories(data.missing_skill_categories); track category.key) {
+          <section class="category-card">
+            <h3>{{ category.label }}</h3>
+            <ul>
+              @for (skill of category.skills; track skill) {
+                <li>{{ skill }}</li>
+              }
+            </ul>
+          </section>
         }
-      </ul>
+      </div>
 
       <h2>Recommendations</h2>
       <ul>

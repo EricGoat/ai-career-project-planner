@@ -4,15 +4,18 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms'
 import { HttpClient } from '@angular/common/http'
 import { forkJoin, switchMap } from 'rxjs'
 
- interface Recommendation {
+interface Recommendation {
   skill: string[]
   project: string
   resource: string
 }
 
+type SkillCategories = Record<string, string[]>
+
 interface Data {
   resume_skills: string[]
   job_skills: string[]
+  missing_skill_categories: SkillCategories
   missing_skills: string[]
   recommendations: Recommendation[]
 }
@@ -26,6 +29,16 @@ interface Data {
 })
 export class AnalyzerComponent {
   private readonly fb = inject(FormBuilder)
+  readonly categoryOrder = [
+    'languages',
+    'cloud_services',
+    'databases',
+    'frameworks',
+    'devops',
+    'version_control',
+    'ai_ml',
+    'other'
+  ]
   result: Data | null = null
   selectedResumeFile: File | null = null
   readonly form = this.fb.nonNullable.group({
@@ -71,5 +84,22 @@ export class AnalyzerComponent {
       this.result = { ...finalResponse }
       this.cdr.detectChanges()
     })
+  }
+
+  getVisibleCategories(categories: SkillCategories): Array<{ key: string, label: string, skills: string[] }> {
+    return this.categoryOrder
+      .map(key => ({
+        key,
+        label: this.formatCategoryLabel(key),
+        skills: categories[key] ?? []
+      }))
+      .filter(category => category.skills.length > 0)
+  }
+
+  private formatCategoryLabel(category: string): string {
+    return category
+      .split('_')
+      .map(part => part.charAt(0).toUpperCase() + part.slice(1))
+      .join(' ')
   }
 }
