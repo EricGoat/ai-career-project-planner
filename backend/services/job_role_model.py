@@ -1,18 +1,8 @@
-import spacy
+from backend.services.skill_extractor import SkillExtractor
+from backend.utils.skill_dictionary import KNOWN_SKILLS, SKILL_ALIASES
 
-nlp = spacy.load("en_core_web_sm")
+extractor = SkillExtractor(KNOWN_SKILLS, SKILL_ALIASES)
 
-KNOWN_SKILLS = [
-    "python", "java", "sql", "machine learning", "flask",
-    "angular", "data analysis", "nlp", "tensorflow", "pandas"
-]
 
-def extract_job_skills(job_text: str) -> list:
-    text = job_text.lower()
-
-    found_skills = []
-    for skill in KNOWN_SKILLS:
-        if skill in text:
-            found_skills.append(skill)
-
-    return sorted(list(set(found_skills)))
+def extract_job_skills(job_text: str) -> list[str]:
+    return extractor.extract(job_text)

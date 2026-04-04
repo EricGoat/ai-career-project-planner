@@ -1,20 +1,36 @@
-import { Component, ChangeDetectorRef } from '@angular/core'
+import { Component, ChangeDetectorRef, inject } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { FormsModule } from '@angular/forms'
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms'
 import { HttpClient } from '@angular/common/http'
 import { forkJoin, switchMap } from 'rxjs'
+
+ interface Recommendation {
+  skill: string[]
+  project: string
+  resource: string
+}
+
+interface Data {
+  resume_skills: string[]
+  job_skills: string[]
+  missing_skills: string[]
+  recommendations: Recommendation[]
+}
 
 @Component({
   selector: 'app-analyzer',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './analyzer.html',
   styleUrls: ['./analyzer.css']
 })
 export class AnalyzerComponent {
-  resumeText = ''
-  jobText = ''
-  result: any = null
+  private readonly fb = inject(FormBuilder)
+  result: Data | null = null
+  readonly form = this.fb.nonNullable.group({
+    resumeText: ['', Validators.required],
+    jobText: ['', Validators.required]
+  })
 
   constructor(
     private http: HttpClient,
@@ -22,32 +38,30 @@ export class AnalyzerComponent {
   ) {}
 
   analyze() {
-    console.log('Analyze clicked')
+    if (this.form.invalid) {
+      this.form.markAllAsTouched()
+      return
+    }
 
     this.result = null
+    const { resumeText, jobText } = this.form.getRawValue()
 
-    const resumePayload = { resume_text: this.resumeText }
-    const jobPayload = { job_text: this.jobText }
+    const resumePayload = { resume_text: resumeText }
+    const jobPayload = { job_text: jobText }
 
     forkJoin({
       resume: this.http.post<any>('http://127.0.0.1:5000/api/resume/parse', resumePayload),
       job: this.http.post<any>('http://127.0.0.1:5000/api/job/analyze', jobPayload)
     }).pipe(
       switchMap(({ resume, job }) => {
-        console.log('Resume response:', resume)
-        console.log('Job response:', job)
-
         const combined = {
           resume_skills: resume.resume_skills,
           job_skills: job.job_skills
         }
 
-        console.log('Sending combined:', combined)
-
         return this.http.post<any>('http://127.0.0.1:5000/api/recommend', combined)
       })
     ).subscribe(finalResponse => {
-      console.log('Final response:', finalResponse)
       this.result = { ...finalResponse }
       this.cdr.detectChanges()
     })
