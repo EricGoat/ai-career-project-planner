@@ -2,11 +2,16 @@
   <h1>AI Career Project Planner</h1>
 
   <form [formGroup]="form" (ngSubmit)="analyze()">
-    <label for="resumeText">Resume Text</label>
-    <textarea id="resumeText" formControlName="resumeText" rows="10"></textarea>
+    <label for="resumeFile">Resume File</label>
+    <input
+      id="resumeFile"
+      type="file"
+      accept=".txt,.md,.docx"
+      (change)="onResumeFileSelected($event)"
+    />
 
-    <label for="jobText">Desired Job Description</label>
-    <textarea id="jobText" formControlName="jobText" rows="10"></textarea>
+    <label for="targetRole">Target Job Role</label>
+    <input id="targetRole" type="text" formControlName="targetRole" />
 
     <button type="submit">Analyze</button>
   </form>
@@ -14,11 +19,18 @@
   @if (result; as data) {
     <div class="results">
       <h2>Missing Skills</h2>
-      <ul>
-        @for (skill of data.missing_skills; track skill) {
-          <li> {{ skill }} </li>
+      <div class="category-grid">
+        @for (category of getVisibleCategories(data.missing_skill_categories); track category.key) {
+          <section class="category-card">
+            <h3>{{ category.label }}</h3>
+            <ul>
+              @for (skill of category.skills; track skill) {
+                <li>{{ skill }}</li>
+              }
+            </ul>
+          </section>
         }
-      </ul>
+      </div>
 
       <h2>Recommendations</h2>
       <ul>

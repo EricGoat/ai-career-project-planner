@@ -7,19 +7,66 @@
 form {
   display: grid;
   gap: 0.75rem;
+  padding: 1.25rem;
+  border: 1px solid #d9e0e8;
+  border-radius: 0.75rem;
+  background: #ffffff;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
 }
 
-textarea {
+label {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+input {
   width: 100%;
   padding: 0.75rem;
   box-sizing: border-box;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.5rem;
+  background: #f8fafc;
 }
 
 button {
   width: fit-content;
-  padding: 0.5rem 1rem;
+  padding: 0.65rem 1rem;
+  border: 0;
+  border-radius: 0.5rem;
+  background: #0f172a;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 .results {
   margin-top: 2rem;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.category-card {
+  border: 1px solid #d9e0e8;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  background: #f8fafc;
+}
+
+.category-card h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+}
+
+.category-card ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.category-card li {
+  margin-bottom: 0.4rem;
 }
