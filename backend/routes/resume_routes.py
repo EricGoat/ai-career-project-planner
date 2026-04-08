@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from backend.services.resume_file_parser import extract_resume_text_from_file
-from backend.services.resume_parser import extract_resume_skills
+from backend.services.resume_file_parser import extract_resume_skills
 
 resume_bp = Blueprint("resume_bp", __name__)
 

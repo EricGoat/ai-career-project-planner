@@ -4,7 +4,7 @@ from typing import Iterable
 import spacy
 
 
-def _normalize_text(text: str) -> str:
+def normalize_text(text: str) -> str:
     text = text.lower().strip()
     text = re.sub(r"[^\w\s+#.]", " ", text)
     text = re.sub(r"\s+", " ", text)
@@ -15,10 +15,10 @@ class SkillExtractor:
     def __init__(self, skills: Iterable[str], aliases: dict[str, str] | None = None):
         self.nlp = spacy.load("en_core_web_sm")
 
-        self.skills = sorted({_normalize_text(skill) for skill in skills})
+        self.skills = sorted({normalize_text(skill) for skill in skills})
 
         self.aliases = {
-            _normalize_text(alias): _normalize_text(target)
+            normalize_text(alias): normalize_text(target)
             for alias, target in (aliases or {}).items()
         }
 
@@ -33,7 +33,7 @@ class SkillExtractor:
         }
 
     def extract(self, text: str) -> list[str]:
-        normalized_text = _normalize_text(text)
+        normalized_text = normalize_text(text)
         found = set()
 
         for skill, pattern in self.skill_patterns.items():
@@ -46,7 +46,7 @@ class SkillExtractor:
 
         doc = self.nlp(text)
         for chunk in doc.noun_chunks:
-            chunk_text = _normalize_text(chunk.text)
+            chunk_text = normalize_text(chunk.text)
             if chunk_text in self.skills:
                 found.add(chunk_text)
             elif chunk_text in self.aliases:

@@ -1,4 +1,4 @@
-from backend.services.job_dataset import load_job_dataset
+from backend.services.load_dataset import load_job_dataset
 from backend.services.job_role_model import extract_job_skills
 
 

@@ -1,6 +1,5 @@
 import re
-
-from backend.services.job_dataset import load_job_dataset
+from backend.services.load_dataset import load_job_dataset
 
 
 def extract_job_skills(target_role: str) -> list[str]:
@@ -57,6 +56,8 @@ def collect_unique_skills(matching_jobs: list[dict]) -> list[str]:
                 unique_skills.append(skill)
 
     return unique_skills
+
+
 def normalize_text(text: str) -> str:
     return re.sub(r"\s+", " ", text.strip().lower())
 

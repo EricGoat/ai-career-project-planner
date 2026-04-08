@@ -1,11 +1,17 @@
 from functools import lru_cache
 import re
+import json
+from pathlib import Path
 
-from backend.services.job_dataset import load_job_dataset
-
+DATASET_PATH = Path(__file__).resolve().parent.parent / "data" / "job_dataset.json"
 
 @lru_cache(maxsize=1)
-def load_dataset_skills() -> list[str]:
+def load_job_dataset() -> list[dict]:
+    with DATASET_PATH.open(encoding="utf-8") as dataset_file:
+        return json.load(dataset_file)
+
+@lru_cache(maxsize=1)
+def load_skills_dataset() -> list[str]:
     unique_skills: list[str] = []
     seen_skills: set[str] = set()
 
