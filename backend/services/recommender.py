@@ -1,3 +1,4 @@
+from urllib.parse import quote_plus
 from backend.services.skill_gap_analysis import (
     average_vectors,
     canonicalize_skill,
@@ -5,6 +6,39 @@ from backend.services.skill_gap_analysis import (
     embed_text,
     get_recommendation_embedding_assets,
 )
+from backend.services.skill_classifier import categorize_skill
+
+
+CATEGORY_RECOMMENDATIONS: dict[str, dict[str, str]] = {
+    "languages": {
+        "project": "Solve a focused coding challenge and then build a command-line tool with {skill}",
+    },
+    "cloud_services": {
+        "project": "Deploy a small service on {skill} with monitoring and a short architecture write-up",
+    },
+    "databases": {
+        "project": "Design a schema in {skill} and build queries for reporting and CRUD operations",
+    },
+    "frameworks": {
+        "project": "Build a production-style web app feature using {skill} with routing, validation, and tests",
+    },
+    "devops": {
+        "project": "Automate a delivery workflow with {skill} and document the deployment pipeline",
+    },
+    "version_control": {
+        "project": "Create a collaborative repo workflow using {skill} with branches, pull requests, and release tags",
+    },
+    "ai_ml": {
+        "project": "Train and evaluate a small model or prototype using {skill} and summarize the results",
+    },
+    "other": {
+        "project": "Build a small portfolio project that demonstrates {skill} in a realistic workflow",
+    }
+}
+
+
+def get_documentation_link(skill: str) -> str:
+    return f"https://google.com/search?q={quote_plus(f'{skill} official documentation')}"
 
 
 def generate_recommendations(skill_gaps: list[str], job_skills: list[str] | None = None) -> list[dict[str, str]]:
@@ -12,10 +46,15 @@ def generate_recommendations(skill_gaps: list[str], job_skills: list[str] | None
 
     recommendations = []
     for skill in ranked_skills[:5]:
+        category = categorize_skill(skill)
+        category_recommendation = CATEGORY_RECOMMENDATIONS[category]
+        documentation_link = get_documentation_link(skill)
         recommendations.append({
             "skill": skill,
-            "project": f"Build a small portfolio project using {skill}",
-            "resource": f"Study official documentation or a beginner course for {skill}",
+            "category": category,
+            "project": category_recommendation["project"].format(skill=skill),
+            "resource": f"Read the official documentation: {documentation_link}",
+            "resource_link": documentation_link,
         })
 
     return recommendations

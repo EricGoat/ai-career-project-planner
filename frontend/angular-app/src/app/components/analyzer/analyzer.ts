@@ -5,9 +5,11 @@ import { HttpClient } from '@angular/common/http'
 import { forkJoin, switchMap } from 'rxjs'
 
 interface Recommendation {
-  skill: string[]
+  skill: string
+  category: string
   project: string
   resource: string
+  resource_link: string
 }
 
 type SkillCategories = Record<string, string[]>

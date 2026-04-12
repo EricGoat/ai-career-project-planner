@@ -1,8 +1,6 @@
 import io
 from zipfile import ZipFile
-
 import pytest
-
 from backend.services.resume_file_parser import extract_resume_text_from_file
 
 

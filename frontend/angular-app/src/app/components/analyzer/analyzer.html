@@ -33,14 +33,17 @@
       </div>
 
       <h2>Recommendations</h2>
-      <ul>
+      <div class="category-grid">
         @for (rec of data.recommendations; track rec.project) {
-          <li>
-            <strong>{{ rec.skill }}</strong>:
-            {{ rec.project }} — {{ rec.resource }}
-          </li>
+          <section class="category-card">
+            <h3>{{ rec.skill }}</h3>
+            <p>{{ rec.project }}</p>
+            <a [href]="rec.resource_link" target="_blank" rel="noreferrer">
+              Look Up Documentation
+            </a>
+          </section>
         }
-      </ul>
+      </div>
     </div>
   }
 </div>

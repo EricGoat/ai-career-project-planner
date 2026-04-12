@@ -70,3 +70,18 @@ button {
 .category-card li {
   margin-bottom: 0.4rem;
 }
+
+.category-card p {
+  margin: 0 0 0.75rem;
+  color: #334155;
+}
+
+.category-card a {
+  color: #0f172a;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.category-card a:hover {
+  text-decoration: underline;
+}

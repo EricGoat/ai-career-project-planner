@@ -1,10 +1,22 @@
 from functools import lru_cache
 import re
-
+from typing import TypedDict
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
-
 from backend.services.load_dataset import load_job_dataset, load_skills_dataset
+
+
+class SkillEmbeddingIndex(TypedDict):
+    skills: list[str]
+    aliases: dict[str, str]
+    vectorizer: TfidfVectorizer
+    skill_vectors: np.ndarray
+
+
+class RecommendationEmbeddingAssets(TypedDict):
+    skill_to_index: dict[str, int]
+    context_vectors: np.ndarray
+    text_index: SkillEmbeddingIndex
 
 
 def find_skill_gaps(resume_skills: list, job_skills: list) -> list:
@@ -59,7 +71,7 @@ def average_vectors(vectors: list[np.ndarray]) -> np.ndarray:
     return normalize_vector(np.mean(np.asarray(vectors, dtype=np.float32), axis=0))
 
 
-def make_skill_embedding_index(skills: list[str], aliases: dict[str, str] | None = None) -> dict[str, object]:
+def make_skill_embedding_index(skills: list[str], aliases: dict[str, str] | None = None) -> SkillEmbeddingIndex:
     normalized_skills = sorted({normalize_embedding_text(skill) for skill in skills if skill.strip()})
     normalized_aliases = {
         normalize_embedding_text(alias): normalize_embedding_text(target)
@@ -68,7 +80,12 @@ def make_skill_embedding_index(skills: list[str], aliases: dict[str, str] | None
 
     vectorizer = TfidfVectorizer(analyzer="char_wb", ngram_range=(3, 5))
     vectorizer.fit(normalized_skills + list(normalized_aliases) or ["skill"])
-    temp_index = {"vectorizer": vectorizer}
+    temp_index: SkillEmbeddingIndex = {
+        "skills": [],
+        "aliases": {},
+        "vectorizer": vectorizer,
+        "skill_vectors": np.zeros((0, 0), dtype=np.float32),
+    }
     skill_vectors = embed_texts(temp_index, normalized_skills)
 
     return {
@@ -79,14 +96,14 @@ def make_skill_embedding_index(skills: list[str], aliases: dict[str, str] | None
     }
 
 
-def embed_text(index: dict[str, object], text: str) -> np.ndarray:
+def embed_text(index: SkillEmbeddingIndex, text: str) -> np.ndarray:
     vectors = embed_texts(index, [text])
     if len(vectors) == 0:
         return np.zeros(0, dtype=np.float32)
     return vectors[0]
 
 
-def embed_texts(index: dict[str, object], texts: list[str]) -> np.ndarray:
+def embed_texts(index: SkillEmbeddingIndex, texts: list[str]) -> np.ndarray:
     if not texts:
         return np.zeros((0, 0), dtype=np.float32)
 
@@ -100,7 +117,7 @@ def embed_texts(index: dict[str, object], texts: list[str]) -> np.ndarray:
     return matrix
 
 
-def find_similar_skills(index: dict[str, object], candidates: list[str], threshold: float = 0.72) -> set[str]:
+def find_similar_skills(index: SkillEmbeddingIndex, candidates: list[str], threshold: float = 0.72) -> set[str]:
     matches: set[str] = set()
     skills: list[str] = index["skills"]
     skill_vectors: np.ndarray = index["skill_vectors"]
@@ -119,7 +136,7 @@ def find_similar_skills(index: dict[str, object], candidates: list[str], thresho
 
 
 @lru_cache(maxsize=1)
-def get_resume_skill_embedding_index() -> dict[str, object]:
+def get_resume_skill_embedding_index() -> SkillEmbeddingIndex:
     aliases = {
         "js": "javascript",
         "ts": "typescript",
@@ -131,7 +148,7 @@ def get_resume_skill_embedding_index() -> dict[str, object]:
 
 
 @lru_cache(maxsize=1)
-def get_recommendation_embedding_assets() -> dict[str, object]:
+def get_recommendation_embedding_assets() -> RecommendationEmbeddingAssets:
     dataset = load_job_dataset()
     skill_names: list[str] = []
     skill_to_index: dict[str, int] = {}

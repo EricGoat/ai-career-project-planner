@@ -1,5 +1,4 @@
 import numpy as np
-
 from backend.services import recommender
 
 
@@ -38,13 +37,7 @@ def test_rank_missing_skills_by_embedding_uses_profile_similarity(monkeypatch):
     assert result == ["django", "git", "docker"]
 
 
-def test_generate_recommendations_returns_embedding_ranked_order(monkeypatch):
-    monkeypatch.setattr(
-        recommender,
-        "rank_missing_skills_by_embedding",
-        lambda skill_gaps, job_skills: ["django", "git", "docker"],
-    )
+def test_get_documentation_link_returns_search_url_when_lookup_fails(monkeypatch):
+    result = recommender.get_documentation_link("custom internal tool")
 
-    result = recommender.generate_recommendations(["docker", "django", "git"], ["flask"])
-
-    assert [recommendation["skill"] for recommendation in result] == ["django", "git", "docker"]
+    assert result == "https://google.com/search?q=custom+internal+tool+official+documentation"

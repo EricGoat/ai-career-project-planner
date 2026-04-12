@@ -1,6 +1,5 @@
 import re
 
-
 SKILL_CATEGORY_PATTERNS: dict[str, tuple[str, ...]] = {
     "languages": (
         "python",
