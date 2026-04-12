@@ -2,8 +2,7 @@ from io import BytesIO
 from pathlib import Path
 from xml.etree import ElementTree
 from zipfile import BadZipFile, ZipFile
-from backend.services.skill_extractor import SkillExtractor
-from backend.services.load_dataset import load_skills_dataset
+from backend.services.skill_extractor import default_skill_extractor
 
 
 def extract_resume_text_from_file(file_bytes: bytes, filename: str) -> str:
@@ -40,5 +39,5 @@ def extract_docx_text(file_bytes: bytes) -> str:
 
 
 def extract_resume_skills(resume_text: str) -> list[str]:
-    extractor = SkillExtractor(load_skills_dataset())
+    extractor = default_skill_extractor()
     return extractor.extract(resume_text)

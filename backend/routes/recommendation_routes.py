@@ -13,7 +13,7 @@ def recommend():
     job_skills = data.get("job_skills", [])
 
     gaps = find_skill_gaps(resume_skills, job_skills)
-    recommendations = generate_recommendations(gaps)
+    recommendations = generate_recommendations(gaps, job_skills)
 
     return jsonify({
         "resume_skill_categories": classify_skills(resume_skills),

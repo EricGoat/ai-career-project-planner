@@ -1,4 +1,5 @@
 from backend.services.skill_extractor import SkillExtractor
+from backend.services.skill_gap_analysis import make_skill_embedding_index
 
 skills = ["python", "machine learning", "javascript"]
 aliases = {"ml": "machine learning", "js": "javascript"}
@@ -20,3 +21,11 @@ def test_extract_no_duplicates():
     extractor = SkillExtractor(skills, aliases)
     text = "Python, python, and PYTHON"
     assert extractor.extract(text) == ["python"]
+
+
+def test_extract_embedding_variant():
+    embedding_index = make_skill_embedding_index(skills, aliases)
+    extractor = SkillExtractor(skills, aliases, embedding_index=embedding_index)
+    text = "Built several java script dashboards for clients."
+
+    assert extractor.extract(text) == ["javascript"]

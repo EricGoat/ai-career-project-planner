@@ -1,56 +1,57 @@
 import re
 from typing import Iterable
 
-import spacy
+from backend.services.skill_gap_analysis import (
+    find_similar_skills,
+    get_resume_skill_embedding_index,
+    make_skill_embedding_index,
+    normalize_embedding_text,
+)
 
 
 def normalize_text(text: str) -> str:
-    text = text.lower().strip()
-    text = re.sub(r"[^\w\s+#.]", " ", text)
-    text = re.sub(r"\s+", " ", text)
-    return text
+    return normalize_embedding_text(text)
 
 
 class SkillExtractor:
-    def __init__(self, skills: Iterable[str], aliases: dict[str, str] | None = None):
-        self.nlp = spacy.load("en_core_web_sm")
-
-        self.skills = sorted({normalize_text(skill) for skill in skills})
-
+    def __init__(self, skills: Iterable[str], aliases: dict[str, str] | None = None, embedding_index=None):
+        self.skills = sorted({normalize_text(skill) for skill in skills if skill.strip()})
         self.aliases = {
             normalize_text(alias): normalize_text(target)
             for alias, target in (aliases or {}).items()
         }
-
-        self.skill_patterns = {
-            skill: re.compile(rf"\b{re.escape(skill)}\b", re.IGNORECASE)
-            for skill in self.skills
-        }
-
-        self.alias_patterns = {
-            alias: re.compile(rf"\b{re.escape(alias)}\b", re.IGNORECASE)
-            for alias in self.aliases
-        }
+        self.embedding_index = embedding_index or make_skill_embedding_index(self.skills, self.aliases)
 
     def extract(self, text: str) -> list[str]:
         normalized_text = normalize_text(text)
         found = set()
 
-        for skill, pattern in self.skill_patterns.items():
-            if pattern.search(normalized_text):
+        for skill in self.skills:
+            if re.search(rf"\b{re.escape(skill)}\b", normalized_text):
                 found.add(skill)
 
-        for alias, pattern in self.alias_patterns.items():
-            if pattern.search(normalized_text):
-                found.add(self.aliases[alias])
+        for alias, target in self.aliases.items():
+            if re.search(rf"\b{re.escape(alias)}\b", normalized_text):
+                found.add(target)
 
-        doc = self.nlp(text)
-        for chunk in doc.noun_chunks:
-            chunk_text = normalize_text(chunk.text)
-            if chunk_text in self.skills:
-                found.add(chunk_text)
-            elif chunk_text in self.aliases:
-                found.add(self.aliases[chunk_text])
-
+        found.update(find_similar_skills(self.embedding_index, collect_embedding_candidates(text)))
         return sorted(found)
 
+
+def collect_embedding_candidates(text: str) -> list[str]:
+    pieces: list[str] = []
+    tokens = re.findall(r"[A-Za-z0-9+#.]+", text)
+    normalized_tokens = [normalize_text(token) for token in tokens if normalize_text(token)]
+
+    for start_index in range(len(normalized_tokens)):
+        for size in range(1, 5):
+            end_index = start_index + size
+            if end_index <= len(normalized_tokens):
+                pieces.append(" ".join(normalized_tokens[start_index:end_index]))
+
+    return list(dict.fromkeys(pieces))
+
+
+def default_skill_extractor() -> SkillExtractor:
+    embedding_index = get_resume_skill_embedding_index()
+    return SkillExtractor(embedding_index["skills"], embedding_index["aliases"], embedding_index)
