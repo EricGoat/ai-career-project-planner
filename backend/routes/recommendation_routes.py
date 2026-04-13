@@ -16,8 +16,8 @@ def recommend():
     recommendations = generate_recommendations(gaps, job_skills)
 
     return jsonify({
-        "resume_skill_categories": classify_skills(resume_skills),
-        "job_skill_categories": classify_skills(job_skills),
+        "resume_skills": resume_skills,
+        "job_skills": job_skills,
         "missing_skill_categories": classify_skills(gaps),
         "missing_skills": gaps,
         "recommendations": recommendations

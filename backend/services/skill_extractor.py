@@ -1,57 +1,49 @@
 import re
-from typing import Iterable
-
-from backend.services.skill_gap_analysis import (
-    find_similar_skills,
-    get_resume_skill_embedding_index,
-    make_skill_embedding_index,
-    normalize_embedding_text,
-)
-
-
-def normalize_text(text: str) -> str:
-    return normalize_embedding_text(text)
+from backend.services.skill_gap_analysis import get_resume_skill_embedding_index, normalize_embedding_text
 
 
 class SkillExtractor:
-    def __init__(self, skills: Iterable[str], aliases: dict[str, str] | None = None, embedding_index=None):
-        self.skills = sorted({normalize_text(skill) for skill in skills if skill.strip()})
-        self.aliases = {
-            normalize_text(alias): normalize_text(target)
-            for alias, target in (aliases or {}).items()
-        }
-        self.embedding_index = embedding_index or make_skill_embedding_index(self.skills, self.aliases)
+    def __init__(self, skills, aliases=None, embedding_index=None):
+        self.skills = []
+        self.aliases = {}
+
+        for skill in skills:
+            name = normalize_embedding_text(skill)
+            if name and name not in self.skills:
+                self.skills.append(name)
+
+        for alias, target in (aliases or {}).items():
+            self.aliases[normalize_embedding_text(alias)] = normalize_embedding_text(target)
+
+        if embedding_index is None:
+            self.embedding_index = {"skills": self.skills, "aliases": self.aliases}
+        else:
+            self.embedding_index = embedding_index
 
     def extract(self, text: str) -> list[str]:
-        normalized_text = normalize_text(text)
-        found = set()
+        text = normalize_embedding_text(text)
+        found = []
+        words = text.split()
 
         for skill in self.skills:
-            if re.search(rf"\b{re.escape(skill)}\b", normalized_text):
-                found.add(skill)
+            if re.search(rf"\b{re.escape(skill)}\b", text) and skill not in found:
+                found.append(skill)
 
         for alias, target in self.aliases.items():
-            if re.search(rf"\b{re.escape(alias)}\b", normalized_text):
-                found.add(target)
+            if re.search(rf"\b{re.escape(alias)}\b", text) and target not in found:
+                found.append(target)
 
-        found.update(find_similar_skills(self.embedding_index, collect_embedding_candidates(text)))
-        return sorted(found)
+        for i in range(len(words) - 1):
+            phrase = words[i] + " " + words[i + 1]
+            simple_phrase = phrase.replace(" ", "")
+            for skill in self.skills:
+                if simple_phrase == skill.replace(" ", "") and skill not in found:
+                    found.append(skill)
 
-
-def collect_embedding_candidates(text: str) -> list[str]:
-    pieces: list[str] = []
-    tokens = re.findall(r"[A-Za-z0-9+#.]+", text)
-    normalized_tokens = [normalize_text(token) for token in tokens if normalize_text(token)]
-
-    for start_index in range(len(normalized_tokens)):
-        for size in range(1, 5):
-            end_index = start_index + size
-            if end_index <= len(normalized_tokens):
-                pieces.append(" ".join(normalized_tokens[start_index:end_index]))
-
-    return list(dict.fromkeys(pieces))
+        found.sort()
+        return found
 
 
 def default_skill_extractor() -> SkillExtractor:
-    embedding_index = get_resume_skill_embedding_index()
-    return SkillExtractor(embedding_index["skills"], embedding_index["aliases"], embedding_index)
+    index = get_resume_skill_embedding_index()
+    return SkillExtractor(index["skills"], index["aliases"], index)

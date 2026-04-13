@@ -23,7 +23,7 @@ def test_extract_no_duplicates():
     assert extractor.extract(text) == ["python"]
 
 
-def test_extract_embedding_variant():
+def test_extract_variant_with_space():
     embedding_index = make_skill_embedding_index(skills, aliases)
     extractor = SkillExtractor(skills, aliases, embedding_index=embedding_index)
     text = "Built several java script dashboards for clients."

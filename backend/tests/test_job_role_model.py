@@ -20,8 +20,11 @@ def test_extract_job_skills_returns_dataset_skills_for_matching_role():
 
 
 def test_extract_job_skills_returns_no_matches_for_non_technical_role():
-    technical_resume_skills = {"Python", "SQL", "JavaScript", "React"}
-    dentist_skills = set(extract_job_skills("dentist"))
+    assert extract_job_skills("dentist") == []
 
-    assert dentist_skills == set()
-    assert technical_resume_skills & dentist_skills == set()
+
+def test_extract_job_skills_maps_backend_engineer_to_backend_role_family():
+    skills = extract_job_skills("Backend Engineer")
+
+    assert skills
+    assert "Node.js" in skills

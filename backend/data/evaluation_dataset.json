@@ -1,0 +1,172 @@
+[
+  {
+    "id": 1,
+    "resume": ["Python", "SQL"],
+    "job": "Data Scientist - Entry Level",
+    "true_resume_skills": ["Python", "SQL"],
+    "true_job_skills": ["Python", "SQL", "Pandas", "NumPy", "Matplotlib"],
+    "true_missing_skills": ["Pandas", "NumPy", "Matplotlib"]
+  },
+  {
+    "id": 2,
+    "resume": ["Node.js", "Python"],
+    "job": "Backend Developer - Entry Level",
+    "true_resume_skills": ["Node.js", "Python"],
+    "true_job_skills": ["Node.js", "Python", "PostgreSQL", "RESTful API", "Git"],
+    "true_missing_skills": ["PostgreSQL", "RESTful API", "Git"]
+  },
+  {
+    "id": 3,
+    "resume": ["HTML", "CSS"],
+    "job": "Frontend Developer - Entry Level",
+    "true_resume_skills": ["HTML", "CSS"],
+    "true_job_skills": ["HTML", "CSS", "JavaScript", "React basics", "Tailwind CSS"],
+    "true_missing_skills": ["JavaScript", "React basics", "Tailwind CSS"]
+  },
+  {
+    "id": 4,
+    "resume": ["Python (advanced)", "SQL"],
+    "job": "Senior Machine Learning Engineer",
+    "true_resume_skills": ["Python (advanced)", "SQL"],
+    "true_job_skills": ["Python (advanced)", "SQL", "NLP", "Feature engineering", "Spark"],
+    "true_missing_skills": ["NLP", "Feature engineering", "Spark"]
+  },
+  {
+    "id": 5,
+    "resume": ["Advanced SQL", "Python"],
+    "job": "Data Analyst - Experienced",
+    "true_resume_skills": ["Advanced SQL", "Python"],
+    "true_job_skills": ["Advanced SQL", "Python", "Tableau", "Power BI", "ETL"],
+    "true_missing_skills": ["Tableau", "Power BI", "ETL"]
+  },
+  {
+    "id": 6,
+    "resume": ["Git", "Docker"],
+    "job": "DevOps Engineer - Fresher",
+    "true_resume_skills": ["Git", "Docker"],
+    "true_job_skills": ["Git", "Docker", "Kubernetes", "Jenkins", "Linux basics"],
+    "true_missing_skills": ["Kubernetes", "Jenkins", "Linux basics"]
+  },
+  {
+    "id": 7,
+    "resume": ["Python", "SQL"],
+    "job": "Data Engineer",
+    "true_resume_skills": ["Python", "SQL"],
+    "true_job_skills": ["Python", "SQL", "PostgreSQL", "Spark Basics", "ETL Fundamentals"],
+    "true_missing_skills": ["PostgreSQL", "Spark Basics", "ETL Fundamentals"]
+  },
+  {
+    "id": 8,
+    "resume": ["HTML5", "JavaScript (ES6+)", "React"],
+    "job": "Full Stack Developer - Entry Level",
+    "true_resume_skills": ["HTML5", "JavaScript (ES6+)", "React"],
+    "true_job_skills": ["HTML5", "JavaScript (ES6+)", "React", "Node.js", "SQL"],
+    "true_missing_skills": ["Node.js", "SQL"]
+  },
+  {
+    "id": 9,
+    "resume": ["Linux", "Python"],
+    "job": "System Engineer",
+    "true_resume_skills": ["Linux", "Python"],
+    "true_job_skills": ["Linux", "Python", "Windows Server", "VMware", "Networking Basics"],
+    "true_missing_skills": ["Windows Server", "VMware", "Networking Basics"]
+  },
+  {
+    "id": 10,
+    "resume": ["Python", "Deep Learning"],
+    "job": "AI Engineer - Experienced",
+    "true_resume_skills": ["Python", "Deep Learning"],
+    "true_job_skills": ["Python", "Deep Learning", "PyTorch", "TensorFlow", "LLMs"],
+    "true_missing_skills": ["PyTorch", "TensorFlow", "LLMs"]
+  },
+  {
+    "id": 11,
+    "resume": ["SQL", "Tableau"],
+    "job": "BI Analyst - Experienced",
+    "true_resume_skills": ["SQL", "Tableau"],
+    "true_job_skills": ["SQL", "Tableau", "Power BI", "Data modeling", "Snowflake"],
+    "true_missing_skills": ["Power BI", "Data modeling", "Snowflake"]
+  },
+  {
+    "id": 12,
+    "resume": ["Java", "Kotlin"],
+    "job": "Android Developer",
+    "true_resume_skills": ["Java", "Kotlin"],
+    "true_job_skills": ["Java", "Kotlin", "Android Studio", "REST APIs", "Unit Testing"],
+    "true_missing_skills": ["Android Studio", "REST APIs", "Unit Testing"]
+  },
+  {
+    "id": 13,
+    "resume": ["C#", "Git"],
+    "job": ".NET Developer",
+    "true_resume_skills": ["C#", "Git"],
+    "true_job_skills": ["C#", "Git", "ASP.NET", "SQL Server", "Entity Framework basics"],
+    "true_missing_skills": ["ASP.NET", "SQL Server", "Entity Framework basics"]
+  },
+  {
+    "id": 14,
+    "resume": ["Figma", "Responsive Design"],
+    "job": "UI Designer",
+    "true_resume_skills": ["Figma", "Responsive Design"],
+    "true_job_skills": ["Figma", "Responsive Design", "Adobe XD", "Wireframing", "Typography"],
+    "true_missing_skills": ["Adobe XD", "Wireframing", "Typography"]
+  },
+  {
+    "id": 15,
+    "resume": ["AWS", "Terraform"],
+    "job": "Cloud Engineer",
+    "true_resume_skills": ["AWS", "Terraform"],
+    "true_job_skills": ["AWS", "Terraform", "Kubernetes", "CI/CD pipelines", "Cloud security compliance"],
+    "true_missing_skills": ["Kubernetes", "CI/CD pipelines", "Cloud security compliance"]
+  },
+  {
+    "id": 16,
+    "resume": ["Excel", "Communication"],
+    "job": "Business Analyst",
+    "true_resume_skills": ["Excel", "Communication"],
+    "true_job_skills": ["Excel", "Communication", "SQL basics", "Requirement gathering", "Documentation"],
+    "true_missing_skills": ["SQL basics", "Requirement gathering", "Documentation"]
+  },
+  {
+    "id": 17,
+    "resume": ["Go", "PostgreSQL"],
+    "job": "Backend Developer - Experienced",
+    "true_resume_skills": ["Go", "PostgreSQL"],
+    "true_job_skills": ["Go", "PostgreSQL", "Spring Boot", "GraphQL", "gRPC"],
+    "true_missing_skills": ["Spring Boot", "GraphQL", "gRPC"]
+  },
+  {
+    "id": 18,
+    "resume": ["React/Redux", "Git"],
+    "job": "Frontend Developer - Experienced",
+    "true_resume_skills": ["React/Redux", "Git"],
+    "true_job_skills": ["React/Redux", "Git", "Angular", "Vue.js", "Unit & E2E testing"],
+    "true_missing_skills": ["Angular", "Vue.js", "Unit & E2E testing"]
+  },
+  {
+    "id": 19,
+    "resume": ["Python (advanced)", "Feature engineering and ETL automation"],
+    "job": "Machine Learning Engineer - Experienced",
+    "true_resume_skills": ["Python (advanced)", "Feature engineering and ETL automation"],
+    "true_job_skills": [
+      "Python (advanced)",
+      "Feature engineering and ETL automation",
+      "Frameworks: TensorFlow, PyTorch, Keras, Scikit-learn (advanced), ONNX",
+      "Big data: Hadoop, Spark",
+      "MLOps: CI/CD pipelines, model monitoring, cloud deployment (AWS/GCP/Azure)"
+    ],
+    "true_missing_skills": [
+      "Frameworks: TensorFlow, PyTorch, Keras, Scikit-learn (advanced), ONNX",
+      "Big data: Hadoop, Spark",
+      "MLOps: CI/CD pipelines, model monitoring, cloud deployment (AWS/GCP/Azure)"
+    ]
+  },
+  {
+    "id": 20,
+    "resume": ["Python (advanced)", "NLP"],
+    "job": "Data Scientist - Experienced",
+    "true_resume_skills": ["Python (advanced)", "NLP"],
+    "true_job_skills": ["Python (advanced)", "NLP", "Deep Learning", "Spark", "Tableau"],
+    "true_missing_skills": ["Deep Learning", "Spark", "Tableau"]
+  }
+]
