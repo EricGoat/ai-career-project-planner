@@ -1,32 +1,37 @@
+import re
 import json
 from pathlib import Path
-import re
 
 DATASET_PATH = Path(__file__).resolve().parent.parent / "data" / "job_dataset.json"
+
 
 def load_job_dataset() -> list[dict]:
     with DATASET_PATH.open(encoding="utf-8") as file:
         return json.load(file)
 
 
-def load_skills_dataset() -> list[str]:
+def extract_skills_from_dataset() -> list[str]:
+    jobs = load_job_dataset()
     skills = []
     seen = set()
 
-    for job in load_job_dataset():
+    for job in jobs:
         for skill in job.get("Skills", []):
-            name = skill.strip()
-            simple_name = re.sub(
-                r"\b(basics|basic|fundamentals|fundamental|advanced|awareness|familiarity|knowledge)\b",
-                "",
-                name,
-                flags=re.IGNORECASE,
-            )
-            simple_name = re.sub(r"\s+", " ", simple_name).strip(" ,-/")
+            skill = normalize_skill_name(skill)
 
-            for value in [name, simple_name]:
-                if value and value.lower() not in seen:
-                    seen.add(value.lower())
-                    skills.append(value)
+            if skill not in seen:
+                seen.add(skill)
+                skills.append(skill)
 
     return skills
+
+
+def normalize_skill_name(skill: str) -> str:
+    skill = re.sub(
+        r"\b(basics|basic|fundamentals|fundamental|advanced|awareness|familiarity|knowledge)\b",
+        "",
+        skill.strip(),
+        flags=re.IGNORECASE,
+    )
+    skill = re.sub(r"\s+", " ", skill).strip(" ,-/")
+    return skill

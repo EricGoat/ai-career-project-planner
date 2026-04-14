@@ -1,5 +1,5 @@
 import re
-
+from backend.services.skill_gap_analysis import canonicalize_skill
 
 SKILL_CATEGORY_PATTERNS = {
     "languages": [
@@ -40,11 +40,11 @@ SKILL_CATEGORY_PATTERNS = {
 
 
 def categorize_skill(skill: str) -> str:
-    skill = skill.strip().lower()
+    skill = canonicalize_skill(skill)
 
     for category, words in SKILL_CATEGORY_PATTERNS.items():
         for word in words:
-            if re.search(rf"(?<!\w){re.escape(word)}(?!\w)", skill):
+            if re.search(rf"\b{re.escape(word)}\b", skill):
                 return category
 
     return "other"

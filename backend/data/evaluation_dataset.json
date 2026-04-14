@@ -1,172 +1,867 @@
 [
   {
     "id": 1,
-    "resume": ["Python", "SQL"],
-    "job": "Data Scientist - Entry Level",
-    "true_resume_skills": ["Python", "SQL"],
-    "true_job_skills": ["Python", "SQL", "Pandas", "NumPy", "Matplotlib"],
-    "true_missing_skills": ["Pandas", "NumPy", "Matplotlib"]
+    "difficulty": "easy",
+    "job": ".NET Developer",
+    "resume_text": "Junior developer with experience building small web apps in C#, HTML, CSS, and JavaScript. Used Visual Studio and Git in class projects.",
+    "true_resume_skills": [
+      "C#",
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Visual Studio",
+      "Git"
+    ],
+    "true_job_skills": [
+      "C#",
+      "VB.NET basics",
+      ".NET Framework",
+      ".NET Core fundamentals",
+      "ASP.NET",
+      "MVC",
+      "HTML",
+      "CSS",
+      "JavaScript basics",
+      "SQL Server",
+      "Entity Framework basics",
+      "LINQ",
+      "Visual Studio",
+      "Git",
+      "Unit Testing basics"
+    ],
+    "true_missing_skills": [
+      ".NET Framework",
+      "ASP.NET",
+      "MVC",
+      "SQL Server",
+      "LINQ"
+    ]
   },
   {
     "id": 2,
-    "resume": ["Node.js", "Python"],
-    "job": "Backend Developer - Entry Level",
-    "true_resume_skills": ["Node.js", "Python"],
-    "true_job_skills": ["Node.js", "Python", "PostgreSQL", "RESTful API", "Git"],
-    "true_missing_skills": ["PostgreSQL", "RESTful API", "Git"]
+    "difficulty": "easy",
+    "job": "AI Engineer - Fresher",
+    "resume_text": "Built machine learning course projects in Python using Pandas, NumPy, Scikit-learn, and SQL. I also tested small neural network examples with TensorFlow.",
+    "true_resume_skills": [
+      "Python",
+      "Pandas",
+      "NumPy",
+      "Scikit-learn",
+      "SQL",
+      "TensorFlow"
+    ],
+    "true_job_skills": [
+      "Python",
+      "Java",
+      "C++",
+      "R",
+      "Supervised/Unsupervised Learning",
+      "Regression",
+      "Classification",
+      "Clustering",
+      "TensorFlow",
+      "PyTorch",
+      "Keras",
+      "Scikit-learn",
+      "Neural Networks",
+      "OpenCV",
+      "NLTK",
+      "Pandas",
+      "NumPy",
+      "SQL",
+      "MongoDB",
+      "NoSQL"
+    ],
+    "true_missing_skills": [
+      "PyTorch",
+      "Keras",
+      "Neural Networks",
+      "NLTK",
+      "MongoDB"
+    ]
   },
   {
     "id": 3,
-    "resume": ["HTML", "CSS"],
-    "job": "Frontend Developer - Entry Level",
-    "true_resume_skills": ["HTML", "CSS"],
-    "true_job_skills": ["HTML", "CSS", "JavaScript", "React basics", "Tailwind CSS"],
-    "true_missing_skills": ["JavaScript", "React basics", "Tailwind CSS"]
+    "difficulty": "easy",
+    "job": "Backend Developer - Entry Level",
+    "resume_text": "Backend projects with Node.js, Python, Express.js, PostgreSQL, and Git. Built a few RESTful API endpoints and basic CRUD services.",
+    "true_resume_skills": [
+      "Node.js",
+      "Python",
+      "Express.js",
+      "PostgreSQL",
+      "Git",
+      "RESTful API"
+    ],
+    "true_job_skills": [
+      "Node.js",
+      "Python",
+      "Java",
+      "Express.js",
+      "Flask",
+      "Django",
+      "MySQL",
+      "PostgreSQL",
+      "MongoDB",
+      "Redis",
+      "RESTful API",
+      "GraphQL basics",
+      "Git"
+    ],
+    "true_missing_skills": [
+      "Flask",
+      "Django",
+      "MySQL",
+      "MongoDB",
+      "Redis"
+    ]
   },
   {
     "id": 4,
-    "resume": ["Python (advanced)", "SQL"],
-    "job": "Senior Machine Learning Engineer",
-    "true_resume_skills": ["Python (advanced)", "SQL"],
-    "true_job_skills": ["Python (advanced)", "SQL", "NLP", "Feature engineering", "Spark"],
-    "true_missing_skills": ["NLP", "Feature engineering", "Spark"]
+    "difficulty": "easy",
+    "job": "Android Developer Intern",
+    "resume_text": "Created Android apps in Java and Kotlin using Android Studio. Worked with XML layouts, Git, and SQLite for local storage.",
+    "true_resume_skills": [
+      "Java",
+      "Kotlin",
+      "Android Studio",
+      "XML",
+      "Git",
+      "SQLite"
+    ],
+    "true_job_skills": [
+      "Java",
+      "Kotlin",
+      "Android Studio",
+      "XML",
+      "REST APIs",
+      "SQLite",
+      "UI/UX Basics",
+      "Git",
+      "MVC"
+    ],
+    "true_missing_skills": [
+      "REST APIs",
+      "UI/UX Basics",
+      "MVC"
+    ]
   },
   {
     "id": 5,
-    "resume": ["Advanced SQL", "Python"],
-    "job": "Data Analyst - Experienced",
-    "true_resume_skills": ["Advanced SQL", "Python"],
-    "true_job_skills": ["Advanced SQL", "Python", "Tableau", "Power BI", "ETL"],
-    "true_missing_skills": ["Tableau", "Power BI", "ETL"]
+    "difficulty": "easy",
+    "job": "BI Analyst - Fresher",
+    "resume_text": "Used SQL, Tableau, Power BI, and Excel to build dashboards for class assignments. Comfortable with basic statistics and reporting.",
+    "true_resume_skills": [
+      "SQL",
+      "Tableau",
+      "Power BI",
+      "Excel",
+      "Basic statistics"
+    ],
+    "true_job_skills": [
+      "SQL",
+      "MySQL basics",
+      "PostgreSQL basics",
+      "Tableau",
+      "Power BI",
+      "Excel charts and dashboards",
+      "Basic statistics",
+      "ETL awareness",
+      "Business acumen",
+      "Data analysis"
+    ],
+    "true_missing_skills": [
+      "ETL awareness",
+      "Business acumen",
+      "Data analysis"
+    ]
   },
   {
     "id": 6,
-    "resume": ["Git", "Docker"],
-    "job": "DevOps Engineer - Fresher",
-    "true_resume_skills": ["Git", "Docker"],
-    "true_job_skills": ["Git", "Docker", "Kubernetes", "Jenkins", "Linux basics"],
-    "true_missing_skills": ["Kubernetes", "Jenkins", "Linux basics"]
+    "difficulty": "easy",
+    "job": "Business Analyst",
+    "resume_text": "Entry-level analyst with Excel, SQL basics, and requirement gathering experience. Wrote documentation and supported simple dashboard work in Power BI.",
+    "true_resume_skills": [
+      "Excel",
+      "SQL basics",
+      "Requirement gathering",
+      "Documentation",
+      "Power BI basics"
+    ],
+    "true_job_skills": [
+      "Data analysis",
+      "Excel",
+      "SQL basics",
+      "Tableau basics",
+      "Power BI basics",
+      "Requirement gathering",
+      "Documentation",
+      "Agile methodology awareness",
+      "Communication",
+      "Problem-solving"
+    ],
+    "true_missing_skills": [
+      "Data analysis",
+      "Tableau basics",
+      "Agile methodology awareness",
+      "Communication",
+      "Problem-solving"
+    ]
   },
   {
     "id": 7,
-    "resume": ["Python", "SQL"],
-    "job": "Data Engineer",
-    "true_resume_skills": ["Python", "SQL"],
-    "true_job_skills": ["Python", "SQL", "PostgreSQL", "Spark Basics", "ETL Fundamentals"],
-    "true_missing_skills": ["PostgreSQL", "Spark Basics", "ETL Fundamentals"]
+    "difficulty": "easy",
+    "job": "Cloud Architect",
+    "resume_text": "Worked with AWS fundamentals, Docker introduction, Python basics, and Bash scripting. Learned cloud security fundamentals in a lab course.",
+    "true_resume_skills": [
+      "AWS fundamentals",
+      "Docker introduction",
+      "Python basics",
+      "Bash scripting",
+      "Cloud security fundamentals"
+    ],
+    "true_job_skills": [
+      "AWS fundamentals",
+      "Azure basics",
+      "GCP basics",
+      "Docker introduction",
+      "Kubernetes basics",
+      "Python basics",
+      "Bash scripting",
+      "Cloud security fundamentals"
+    ],
+    "true_missing_skills": [
+      "Azure basics",
+      "GCP basics",
+      "Kubernetes basics"
+    ]
   },
   {
     "id": 8,
-    "resume": ["HTML5", "JavaScript (ES6+)", "React"],
-    "job": "Full Stack Developer - Entry Level",
-    "true_resume_skills": ["HTML5", "JavaScript (ES6+)", "React"],
-    "true_job_skills": ["HTML5", "JavaScript (ES6+)", "React", "Node.js", "SQL"],
-    "true_missing_skills": ["Node.js", "SQL"]
+    "difficulty": "easy",
+    "job": "Cloud Engineer - Fresher",
+    "resume_text": "Hands-on cloud coursework using AWS, Azure, Terraform basics, Python, Bash, Jenkins, and Git. Also explored Docker and CloudWatch.",
+    "true_resume_skills": [
+      "AWS",
+      "Azure",
+      "Terraform basics",
+      "Python",
+      "Bash",
+      "Jenkins",
+      "Git",
+      "Docker basics",
+      "CloudWatch"
+    ],
+    "true_job_skills": [
+      "AWS",
+      "Azure",
+      "GCP",
+      "Terraform basics",
+      "CloudFormation basics",
+      "Docker basics",
+      "Kubernetes basics",
+      "Python",
+      "Bash",
+      "Shell scripting",
+      "Jenkins",
+      "GitHub Actions",
+      "AWS CodePipeline",
+      "Monitoring: CloudWatch, Prometheus, Azure Monitor",
+      "VPC",
+      "VPN",
+      "IAM basics",
+      "Git/GitHub/GitLab"
+    ],
+    "true_missing_skills": [
+      "GCP",
+      "CloudFormation basics",
+      "Kubernetes basics",
+      "GitHub Actions",
+      "IAM basics"
+    ]
   },
   {
     "id": 9,
-    "resume": ["Linux", "Python"],
-    "job": "System Engineer",
-    "true_resume_skills": ["Linux", "Python"],
-    "true_job_skills": ["Linux", "Python", "Windows Server", "VMware", "Networking Basics"],
-    "true_missing_skills": ["Windows Server", "VMware", "Networking Basics"]
+    "difficulty": "medium",
+    "job": ".NET Developer",
+    "resume_text": "Built coursework projects with c sharp and asp dot net plus sql server. Comfortable with html/css/js and source control in git. I have not used linq much.",
+    "true_resume_skills": [
+      "C#",
+      "ASP.NET",
+      "SQL Server",
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Git"
+    ],
+    "true_job_skills": [
+      "C#",
+      "VB.NET basics",
+      ".NET Framework",
+      ".NET Core fundamentals",
+      "ASP.NET",
+      "MVC",
+      "HTML",
+      "CSS",
+      "JavaScript basics",
+      "SQL Server",
+      "Entity Framework basics",
+      "LINQ",
+      "Visual Studio",
+      "Git",
+      "Unit Testing basics"
+    ],
+    "true_missing_skills": [
+      ".NET Framework",
+      "MVC",
+      "Entity Framework basics",
+      "LINQ",
+      "Visual Studio"
+    ]
   },
   {
     "id": 10,
-    "resume": ["Python", "Deep Learning"],
-    "job": "AI Engineer - Experienced",
-    "true_resume_skills": ["Python", "Deep Learning"],
-    "true_job_skills": ["Python", "Deep Learning", "PyTorch", "TensorFlow", "LLMs"],
-    "true_missing_skills": ["PyTorch", "TensorFlow", "LLMs"]
+    "difficulty": "medium",
+    "job": "AI Prompt Engineer",
+    "resume_text": "I have done prompt writing for chatbot prototypes and basic NLP work in python. Used spaCy, nltk, and some Hugging Face tutorials. I can communicate results clearly.",
+    "true_resume_skills": [
+      "Prompt writing fundamentals",
+      "Intro to NLP",
+      "Python basics",
+      "SpaCy basics",
+      "NLTK basics",
+      "Communication"
+    ],
+    "true_job_skills": [
+      "Python basics",
+      "JavaScript basics",
+      "Intro to NLP",
+      "Hugging Face Transformers basics",
+      "SpaCy basics",
+      "NLTK basics",
+      "Prompt writing fundamentals",
+      "OpenAI GPT models intro",
+      "TensorFlow basics",
+      "PyTorch basics",
+      "Critical thinking",
+      "Communication",
+      "Collaboration",
+      "Creativity"
+    ],
+    "true_missing_skills": [
+      "Hugging Face Transformers basics",
+      "OpenAI GPT models intro",
+      "TensorFlow basics",
+      "PyTorch basics",
+      "Creativity"
+    ]
   },
   {
     "id": 11,
-    "resume": ["SQL", "Tableau"],
-    "job": "BI Analyst - Experienced",
-    "true_resume_skills": ["SQL", "Tableau"],
-    "true_job_skills": ["SQL", "Tableau", "Power BI", "Data modeling", "Snowflake"],
-    "true_missing_skills": ["Power BI", "Data modeling", "Snowflake"]
+    "difficulty": "medium",
+    "job": "Backend Developer - Entry Level",
+    "resume_text": "Developed server-side apps with Django and Flask, wrote APIs, used MongoDB for a hobby project, and versioned everything in git. Did not work with Redis yet.",
+    "true_resume_skills": [
+      "Django",
+      "Flask",
+      "RESTful API",
+      "MongoDB",
+      "Git"
+    ],
+    "true_job_skills": [
+      "Node.js",
+      "Python",
+      "Java",
+      "Express.js",
+      "Flask",
+      "Django",
+      "MySQL",
+      "PostgreSQL",
+      "MongoDB",
+      "Redis",
+      "RESTful API",
+      "GraphQL basics",
+      "Git"
+    ],
+    "true_missing_skills": [
+      "Node.js",
+      "Express.js",
+      "MySQL",
+      "PostgreSQL",
+      "Redis"
+    ]
   },
   {
     "id": 12,
-    "resume": ["Java", "Kotlin"],
-    "job": "Android Developer",
-    "true_resume_skills": ["Java", "Kotlin"],
-    "true_job_skills": ["Java", "Kotlin", "Android Studio", "REST APIs", "Unit Testing"],
-    "true_missing_skills": ["Android Studio", "REST APIs", "Unit Testing"]
+    "difficulty": "medium",
+    "job": "Big Data Specialist",
+    "resume_text": "Worked on spark basics, sql basics, python basics, and simple ETL concepts. I also touched Linux or Unix basics in lab exercises.",
+    "true_resume_skills": [
+      "Apache Spark basics",
+      "SQL basics",
+      "Python basics",
+      "ETL concepts",
+      "Linux/Unix basics"
+    ],
+    "true_job_skills": [
+      "Hadoop (HDFS, MapReduce, Hive, Pig)",
+      "Apache Spark basics",
+      "Java basics",
+      "Python basics",
+      "Scala basics",
+      "SQL basics",
+      "NoSQL basics (MongoDB, HBase)",
+      "ETL concepts",
+      "Talend basics",
+      "Apache NiFi basics",
+      "Linux/Unix basics",
+      "Analytical thinking",
+      "Problem-solving",
+      "Teamwork"
+    ],
+    "true_missing_skills": [
+      "Hadoop (HDFS, MapReduce, Hive, Pig)",
+      "Scala basics",
+      "Talend basics",
+      "Apache NiFi basics",
+      "NoSQL basics (MongoDB, HBase)"
+    ]
   },
   {
     "id": 13,
-    "resume": ["C#", "Git"],
-    "job": ".NET Developer",
-    "true_resume_skills": ["C#", "Git"],
-    "true_job_skills": ["C#", "Git", "ASP.NET", "SQL Server", "Entity Framework basics"],
-    "true_missing_skills": ["ASP.NET", "SQL Server", "Entity Framework basics"]
+    "difficulty": "medium",
+    "job": "Business Analyst",
+    "resume_text": "Prepared Excel reports and basic Power BI visuals, documented business requirements, and helped with process notes. Strong communication and problem-solving in team settings.",
+    "true_resume_skills": [
+      "Excel",
+      "Power BI basics",
+      "Requirement gathering",
+      "Documentation",
+      "Communication",
+      "Problem-solving"
+    ],
+    "true_job_skills": [
+      "Data analysis",
+      "Excel",
+      "SQL basics",
+      "Tableau basics",
+      "Power BI basics",
+      "Requirement gathering",
+      "Documentation",
+      "Agile methodology awareness",
+      "Communication",
+      "Problem-solving"
+    ],
+    "true_missing_skills": [
+      "Data analysis",
+      "SQL basics",
+      "Tableau basics",
+      "Agile methodology awareness"
+    ]
   },
   {
     "id": 14,
-    "resume": ["Figma", "Responsive Design"],
-    "job": "UI Designer",
-    "true_resume_skills": ["Figma", "Responsive Design"],
-    "true_job_skills": ["Figma", "Responsive Design", "Adobe XD", "Wireframing", "Typography"],
-    "true_missing_skills": ["Adobe XD", "Wireframing", "Typography"]
+    "difficulty": "medium",
+    "job": "Android Developer Intern",
+    "resume_text": "Android coursework with Kotlin, Java, xml layouts, REST API integration, and git. Familiar with UI and UX basics from design collaboration.",
+    "true_resume_skills": [
+      "Kotlin",
+      "Java",
+      "XML",
+      "REST APIs",
+      "Git",
+      "UI/UX Basics"
+    ],
+    "true_job_skills": [
+      "Java",
+      "Kotlin",
+      "Android Studio",
+      "XML",
+      "REST APIs",
+      "SQLite",
+      "UI/UX Basics",
+      "Git",
+      "MVC"
+    ],
+    "true_missing_skills": [
+      "Android Studio",
+      "SQLite",
+      "MVC"
+    ]
   },
   {
     "id": 15,
-    "resume": ["AWS", "Terraform"],
-    "job": "Cloud Engineer",
-    "true_resume_skills": ["AWS", "Terraform"],
-    "true_job_skills": ["AWS", "Terraform", "Kubernetes", "CI/CD pipelines", "Cloud security compliance"],
-    "true_missing_skills": ["Kubernetes", "CI/CD pipelines", "Cloud security compliance"]
+    "difficulty": "medium",
+    "job": "Cloud Engineer - Fresher",
+    "resume_text": "Set up container demos with docker/k8s basics, wrote python and shell automation, used github actions for CI, and monitored training apps with Prometheus.",
+    "true_resume_skills": [
+      "Docker basics",
+      "Kubernetes basics",
+      "Python",
+      "Shell scripting",
+      "GitHub Actions",
+      "Prometheus"
+    ],
+    "true_job_skills": [
+      "AWS",
+      "Azure",
+      "GCP",
+      "Terraform basics",
+      "CloudFormation basics",
+      "Docker basics",
+      "Kubernetes basics",
+      "Python",
+      "Bash",
+      "Shell scripting",
+      "Jenkins",
+      "GitHub Actions",
+      "AWS CodePipeline",
+      "Monitoring: CloudWatch, Prometheus, Azure Monitor",
+      "VPC",
+      "VPN",
+      "IAM basics",
+      "Git/GitHub/GitLab"
+    ],
+    "true_missing_skills": [
+      "AWS",
+      "Azure",
+      "GCP",
+      "Terraform basics",
+      "IAM basics"
+    ]
   },
   {
     "id": 16,
-    "resume": ["Excel", "Communication"],
-    "job": "Business Analyst",
-    "true_resume_skills": ["Excel", "Communication"],
-    "true_job_skills": ["Excel", "Communication", "SQL basics", "Requirement gathering", "Documentation"],
-    "true_missing_skills": ["SQL basics", "Requirement gathering", "Documentation"]
+    "difficulty": "medium",
+    "job": "BI Analyst - Fresher",
+    "resume_text": "Experience with sql querying, power bi, and excel pivot tables. I can explain metrics, but I have not worked much with ETL or Tableau.",
+    "true_resume_skills": [
+      "SQL querying",
+      "Power BI",
+      "Excel charts and pivot tables"
+    ],
+    "true_job_skills": [
+      "SQL",
+      "MySQL basics",
+      "PostgreSQL basics",
+      "Tableau",
+      "Power BI",
+      "Excel charts and dashboards",
+      "Basic statistics",
+      "ETL awareness",
+      "Business acumen",
+      "Data analysis"
+    ],
+    "true_missing_skills": [
+      "Tableau",
+      "Basic statistics",
+      "ETL awareness",
+      "Business acumen",
+      "Data analysis"
+    ]
   },
   {
     "id": 17,
-    "resume": ["Go", "PostgreSQL"],
-    "job": "Backend Developer - Experienced",
-    "true_resume_skills": ["Go", "PostgreSQL"],
-    "true_job_skills": ["Go", "PostgreSQL", "Spring Boot", "GraphQL", "gRPC"],
-    "true_missing_skills": ["Spring Boot", "GraphQL", "gRPC"]
+    "difficulty": "hard",
+    "job": "AI Engineer - Experienced",
+    "resume_text": "Built production ML services in Python with deep-learning pipelines, hf transformers, dockerized inference, and model monitoring. Also used aws and spark for large-scale jobs.",
+    "true_resume_skills": [
+      "Python",
+      "Deep Learning",
+      "Hugging Face Transformers",
+      "Docker",
+      "Model Monitoring",
+      "AWS",
+      "Apache Spark"
+    ],
+    "true_job_skills": [
+      "Python",
+      "Java",
+      "C++",
+      "R",
+      "Deep Learning",
+      "Reinforcement Learning",
+      "NLP",
+      "Computer Vision",
+      "Generative AI",
+      "LLMs",
+      "TensorFlow",
+      "PyTorch",
+      "Scikit-learn",
+      "Hugging Face Transformers",
+      "ONNX",
+      "AWS",
+      "GCP",
+      "Azure",
+      "CI/CD",
+      "MLOps",
+      "Apache Spark",
+      "Hadoop",
+      "Docker",
+      "Kubernetes",
+      "Model Monitoring",
+      "SHAP",
+      "LIME"
+    ],
+    "true_missing_skills": [
+      "LLMs",
+      "TensorFlow",
+      "PyTorch",
+      "MLOps",
+      "Kubernetes",
+      "SHAP"
+    ]
   },
   {
     "id": 18,
-    "resume": ["React/Redux", "Git"],
-    "job": "Frontend Developer - Experienced",
-    "true_resume_skills": ["React/Redux", "Git"],
-    "true_job_skills": ["React/Redux", "Git", "Angular", "Vue.js", "Unit & E2E testing"],
-    "true_missing_skills": ["Angular", "Vue.js", "Unit & E2E testing"]
+    "difficulty": "hard",
+    "job": ".NET Developer",
+    "resume_text": "5 years in dotnet core and asp net mvc, building web api services with docker on azure. Strong in c sharp, sql server, and entity framework. Little exposure to k8s.",
+    "true_resume_skills": [
+      ".NET Core",
+      "ASP.NET MVC",
+      "WebAPI",
+      "Docker",
+      "Azure",
+      "C#",
+      "SQL Server",
+      "Entity Framework"
+    ],
+    "true_job_skills": [
+      "C#",
+      ".NET Framework",
+      "ASP.NET",
+      "HTML",
+      "CSS",
+      "SQL Server"
+    ],
+    "true_missing_skills": [
+      ".NET Framework",
+      "ASP.NET",
+      "HTML",
+      "CSS"
+    ]
   },
   {
     "id": 19,
-    "resume": ["Python (advanced)", "Feature engineering and ETL automation"],
-    "job": "Machine Learning Engineer - Experienced",
-    "true_resume_skills": ["Python (advanced)", "Feature engineering and ETL automation"],
+    "difficulty": "hard",
+    "job": "AI Prompt Engineer",
+    "resume_text": "Designed prompt chains for LLM apps, integrated the OpenAI API, and used TensorFlow and PyTorch in earlier NLP work. Comfortable with Python and prompt evaluation, but not much JavaScript.",
+    "true_resume_skills": [
+      "Prompt writing fundamentals",
+      "OpenAI API",
+      "TensorFlow",
+      "PyTorch",
+      "Python basics",
+      "Intro to NLP"
+    ],
     "true_job_skills": [
-      "Python (advanced)",
-      "Feature engineering and ETL automation",
-      "Frameworks: TensorFlow, PyTorch, Keras, Scikit-learn (advanced), ONNX",
-      "Big data: Hadoop, Spark",
-      "MLOps: CI/CD pipelines, model monitoring, cloud deployment (AWS/GCP/Azure)"
+      "Python basics",
+      "JavaScript basics",
+      "Intro to NLP",
+      "Hugging Face Transformers basics",
+      "SpaCy basics",
+      "NLTK basics",
+      "Prompt writing fundamentals",
+      "OpenAI GPT models intro",
+      "TensorFlow basics",
+      "PyTorch basics",
+      "Critical thinking",
+      "Communication",
+      "Collaboration",
+      "Creativity"
     ],
     "true_missing_skills": [
-      "Frameworks: TensorFlow, PyTorch, Keras, Scikit-learn (advanced), ONNX",
-      "Big data: Hadoop, Spark",
-      "MLOps: CI/CD pipelines, model monitoring, cloud deployment (AWS/GCP/Azure)"
+      "JavaScript basics",
+      "Hugging Face Transformers basics",
+      "SpaCy basics",
+      "NLTK basics",
+      "Creativity"
     ]
   },
   {
     "id": 20,
-    "resume": ["Python (advanced)", "NLP"],
-    "job": "Data Scientist - Experienced",
-    "true_resume_skills": ["Python (advanced)", "NLP"],
-    "true_job_skills": ["Python (advanced)", "NLP", "Deep Learning", "Spark", "Tableau"],
-    "true_missing_skills": ["Deep Learning", "Spark", "Tableau"]
+    "difficulty": "hard",
+    "job": "Backend Developer - Experienced",
+    "resume_text": "Production backend engineer using Go, PostgreSQL, GraphQL, grpc, Docker, and AWS. Some Spring Boot exposure, but no regular Node or Django work.",
+    "true_resume_skills": [
+      "Go",
+      "PostgreSQL",
+      "GraphQL",
+      "gRPC",
+      "Docker",
+      "AWS",
+      "Spring Boot"
+    ],
+    "true_job_skills": [
+      "Node.js",
+      "Python",
+      "Java",
+      "Go",
+      "Express.js",
+      "Django",
+      "Flask",
+      "Spring Boot",
+      "MySQL",
+      "PostgreSQL",
+      "MongoDB",
+      "Redis",
+      "RESTful API",
+      "GraphQL",
+      "gRPC",
+      "Git",
+      "Docker",
+      "Kubernetes",
+      "CI/CD",
+      "Cloud Platforms",
+      "Agile"
+    ],
+    "true_missing_skills": [
+      "Node.js",
+      "Django",
+      "Flask",
+      "MongoDB",
+      "Redis",
+      "Kubernetes"
+    ]
+  },
+  {
+    "id": 21,
+    "difficulty": "hard",
+    "job": "Big Data Specialist",
+    "resume_text": "Implemented Kafka plus Spark streaming pipelines with Python and Scala, delivered dashboards in Tableau, and worked in Snowflake. Limited work with Flink or BigQuery.",
+    "true_resume_skills": [
+      "Kafka",
+      "Spark Streaming",
+      "Python advanced",
+      "Scala advanced",
+      "Tableau",
+      "Snowflake"
+    ],
+    "true_job_skills": [
+      "Hadoop",
+      "Spark Streaming",
+      "Kafka",
+      "Flink",
+      "Java advanced",
+      "Python advanced",
+      "Scala advanced",
+      "Redshift",
+      "BigQuery",
+      "Snowflake",
+      "AWS big data services",
+      "Azure big data services",
+      "GCP big data services",
+      "Tableau",
+      "Power BI",
+      "MLlib basics",
+      "TensorFlow basics",
+      "Data governance",
+      "Leadership",
+      "Collaboration"
+    ],
+    "true_missing_skills": [
+      "Hadoop",
+      "Flink",
+      "BigQuery",
+      "Power BI",
+      "Data governance",
+      "MLlib basics"
+    ]
+  },
+  {
+    "id": 22,
+    "difficulty": "hard",
+    "job": "Cloud Architect",
+    "resume_text": "Worked on aws multi cloud migration, ansible, and cloudformation templates. Designed kubernetes orchestration patterns and mentored junior engineers on governance.",
+    "true_resume_skills": [
+      "AWS multi-cloud",
+      "Ansible",
+      "CloudFormation",
+      "Kubernetes orchestration",
+      "Leadership"
+    ],
+    "true_job_skills": [
+      "AWS fundamentals",
+      "Azure basics",
+      "GCP basics",
+      "Docker introduction",
+      "Kubernetes basics",
+      "Python basics",
+      "Bash scripting",
+      "Cloud security fundamentals"
+    ],
+    "true_missing_skills": [
+      "Azure basics",
+      "GCP basics",
+      "Docker introduction",
+      "Python basics",
+      "Cloud security fundamentals"
+    ]
+  },
+  {
+    "id": 23,
+    "difficulty": "hard",
+    "job": "Business Analyst",
+    "resume_text": "Led stakeholder interviews, requirement elicitation, and KPI reporting with Tableau and advanced SQL. Also handled agile workflows and data storytelling presentations.",
+    "true_resume_skills": [
+      "Requirement gathering",
+      "Stakeholder communication",
+      "Tableau",
+      "Advanced SQL",
+      "Agile methodology",
+      "Data storytelling"
+    ],
+    "true_job_skills": [
+      "Data analysis",
+      "Excel",
+      "SQL basics",
+      "Tableau basics",
+      "Power BI basics",
+      "Requirement gathering",
+      "Documentation",
+      "Agile methodology awareness",
+      "Communication",
+      "Problem-solving"
+    ],
+    "true_missing_skills": [
+      "Excel",
+      "Power BI basics",
+      "Documentation",
+      "Problem-solving"
+    ]
+  },
+  {
+    "id": 24,
+    "difficulty": "hard",
+    "job": "Android Developer",
+    "resume_text": "Maintained production Android apps with Kotlin, Jetpack, Room, Firebase, MVVM, and CI/CD. Good unit test coverage, but I do not really use Java anymore.",
+    "true_resume_skills": [
+      "Kotlin",
+      "Jetpack",
+      "Room",
+      "Firebase",
+      "MVVM",
+      "CI/CD",
+      "Unit Testing"
+    ],
+    "true_job_skills": [
+      "Java",
+      "Kotlin",
+      "Android Studio",
+      "Jetpack",
+      "MVVM",
+      "Room",
+      "REST APIs",
+      "Git",
+      "Firebase",
+      "Unit Testing"
+    ],
+    "true_missing_skills": [
+      "Java",
+      "Android Studio",
+      "REST APIs",
+      "Git"
+    ]
   }
 ]

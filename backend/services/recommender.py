@@ -1,9 +1,8 @@
-import re
 from urllib.parse import quote_plus
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity as sklearn_cosine_similarity
 from backend.services.skill_classifier import categorize_skill
-from backend.services.skill_gap_analysis import canonicalize_skill, normalize_embedding_text
+from backend.services.skill_gap_analysis import canonicalize_skill, normalize_text
 
 CATEGORY_RECOMMENDATIONS: dict[str, dict[str, str]] = {
     "languages": {
@@ -59,8 +58,8 @@ def generate_recommendations(
 
 
 def cosine_similarity(text1: str, text2: str) -> float:
-    text1 = normalize_embedding_text(text1).replace(" ", "")
-    text2 = normalize_embedding_text(text2).replace(" ", "")
+    text1 = normalize_text(text1).replace(" ", "")
+    text2 = normalize_text(text2).replace(" ", "")
 
     if not text1 or not text2:
         return 0.0
@@ -70,54 +69,28 @@ def cosine_similarity(text1: str, text2: str) -> float:
     return float(sklearn_cosine_similarity(matrix[0:1], matrix[1:2])[0][0])
 
 
-def rank_missing_skill_score(
-    skill_gap: str,
-    job_skills: list[str],
-    job_context: str = "",
-) -> float:
-    normalized_gap = canonicalize_skill(skill_gap)
-    if not normalized_gap:
+def rank_missing_skill_score(skill_gap: str, job_skills: list[str], context: str) -> float:
+    gap = canonicalize_skill(skill_gap)
+    if not gap:
         return float("-inf")
 
-    context = canonicalize_skill(job_context)
-    context_tokens = set(context.split())
-    gap_tokens = set(normalized_gap.split())
-    normalized_job_skills = [canonicalize_skill(skill) for skill in job_skills if skill]
-    related_job_skills = [skill for skill in normalized_job_skills if skill != normalized_gap]
+    normalized_job_skills = [
+        canonicalize_skill(skill)
+        for skill in job_skills
+        if skill and canonicalize_skill(skill) != gap
+    ]
 
-    score = 0.0
+    similarities = [
+        cosine_similarity(gap, job_skill)
+        for job_skill in normalized_job_skills
+    ]
 
-    max_job_similarity = max(
-        (cosine_similarity(normalized_gap, job_skill) for job_skill in related_job_skills),
-        default=0.0,
-    )
-    avg_job_similarity = (
-        sum(cosine_similarity(normalized_gap, job_skill) for job_skill in related_job_skills) / len(related_job_skills)
-        if related_job_skills else 0.0
-    )
-    context_similarity = cosine_similarity(normalized_gap, context) if context else 0.0
+    max_sim = max(similarities, default=0.0)
+    avg_sim = sum(similarities) / len(similarities) if similarities else 0.0
 
-    score += max_job_similarity * 0.6
-    score += avg_job_similarity * 0.2
-    score += context_similarity * 0.2
+    context_sim = cosine_similarity(gap, canonicalize_skill(context)) if context else 0.0
 
-    if gap_tokens & context_tokens:
-        score += 0.2
-
-    composite_hits = skill_gap.count(",") + skill_gap.count(":") + skill_gap.count("/")
-    score += min(composite_hits * 0.12, 0.48)
-
-    noisy_words = {
-        "experience", "knowledge", "ability", "understanding",
-        "familiarity", "working", "including", "preferred",
-        "plus", "bonus", "etc"
-    }
-    noisy_count = sum(token in noisy_words for token in gap_tokens)
-    score -= noisy_count * 0.15
-
-    if any(keyword in context for keyword in ["backend", "frontend"]):
-        if re.search(r"\b(windows|vmware|networking|active directory)\b", normalized_gap):
-            score -= 0.35
+    score = 0.7 * max_sim + 0.2 * avg_sim + 0.1 * context_sim
 
     return score
 

@@ -1,49 +1,61 @@
 import re
-from backend.services.skill_gap_analysis import get_resume_skill_embedding_index, normalize_embedding_text
+from backend.services.skill_gap_analysis import canonicalize_skill, get_resume_skill_index
+
+ALLOWED_SINGLE_WORD_SKILLS = {
+    "python",
+    "java",
+    "sql",
+    "excel",
+    "git",
+    "docker",
+    "kubernetes",
+    "aws",
+    "azure",
+    "gcp",
+    "linux",
+    "tensorflow",
+    "pytorch",
+    "tableau",
+    "react",
+    "angular",
+    "flask",
+    "django",
+    "pandas",
+    "numpy",
+}
 
 
 class SkillExtractor:
-    def __init__(self, skills, aliases=None, embedding_index=None):
-        self.skills = []
-        self.aliases = {}
+    def __init__(self, skills: list[str]):
+        self.skills = sorted(set(canonicalize_skill(skill) for skill in skills if canonicalize_skill(skill)))
 
-        for skill in skills:
-            name = normalize_embedding_text(skill)
-            if name and name not in self.skills:
-                self.skills.append(name)
-
-        for alias, target in (aliases or {}).items():
-            self.aliases[normalize_embedding_text(alias)] = normalize_embedding_text(target)
-
-        if embedding_index is None:
-            self.embedding_index = {"skills": self.skills, "aliases": self.aliases}
-        else:
-            self.embedding_index = embedding_index
+        self.multiword_skills = [skill for skill in self.skills if " " in skill]
+        self.single_word_skills = [
+            skill for skill in self.skills
+            if " " not in skill and skill in ALLOWED_SINGLE_WORD_SKILLS
+        ]
 
     def extract(self, text: str) -> list[str]:
-        text = normalize_embedding_text(text)
-        found = []
-        words = text.split()
+        normalized_text = canonicalize_skill(text)
+        if not normalized_text:
+            return []
 
-        for skill in self.skills:
-            if re.search(rf"\b{re.escape(skill)}\b", text) and skill not in found:
-                found.append(skill)
+        found = set()
 
-        for alias, target in self.aliases.items():
-            if re.search(rf"\b{re.escape(alias)}\b", text) and target not in found:
-                found.append(target)
+        for skill in self.multiword_skills:
+            if self._contains(normalized_text, skill):
+                found.add(skill)
 
-        for i in range(len(words) - 1):
-            phrase = words[i] + " " + words[i + 1]
-            simple_phrase = phrase.replace(" ", "")
-            for skill in self.skills:
-                if simple_phrase == skill.replace(" ", "") and skill not in found:
-                    found.append(skill)
+        for skill in self.single_word_skills:
+            if self._contains(normalized_text, skill):
+                found.add(skill)
 
-        found.sort()
-        return found
+        return sorted(found)
+
+    def _contains(self, text: str, phrase: str) -> bool:
+        return re.search(rf"\b{re.escape(phrase)}\b", text) is not None
 
 
 def default_skill_extractor() -> SkillExtractor:
-    index = get_resume_skill_embedding_index()
-    return SkillExtractor(index["skills"], index["aliases"], index)
+    index = get_resume_skill_index()
+    return SkillExtractor(index["skills"])

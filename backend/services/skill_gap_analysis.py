@@ -1,66 +1,54 @@
 import re
+from backend.services.load_dataset import extract_skills_from_dataset
+
+REMOVE_WORDS_PATTERN = re.compile(
+    r"\b(basics|basic|fundamentals|fundamental|advanced|awareness|familiarity|knowledge)\b",
+    flags=re.IGNORECASE,
+)
+
+SKILL_ALIASES = {
+    "github": "git",
+    "gitlab": "git",
+    "version control": "git",
+    "js": "javascript",
+    "ts": "typescript",
+    "ml": "machine learning",
+    "ai": "artificial intelligence",
+    "py": "python",
+}
+
+
+def normalize_text(text: str) -> str:
+    text = text.lower().strip()
+    text = re.sub(r"[^\w\s+#.]", " ", text)
+    return re.sub(r"\s+", " ", text).strip()
 
 
 def canonicalize_skill(skill: str) -> str:
-    skill = skill.strip().lower()
-    skill = re.sub(r"\s+", " ", skill)
-
-    if "github" in skill or "gitlab" in skill or "version control" in skill or skill == "git":
-        return "git"
-
-    remove_words = ["basics", "basic", "fundamentals", "fundamental", "advanced", "awareness", "familiarity", "knowledge"]
-    for word in remove_words:
-        skill = skill.replace(word, "")
-
+    skill = normalize_text(skill)
+    skill = REMOVE_WORDS_PATTERN.sub("", skill)
     skill = re.sub(r"\s+", " ", skill).strip(" ,-/")
-    return skill
+    return SKILL_ALIASES.get(skill, skill)
 
 
-def find_skill_gaps(resume_skills: list, job_skills: list) -> list:
-    resume = set()
-    job = set()
-
-    for skill in resume_skills:
-        name = canonicalize_skill(skill)
-        if name:
-            resume.add(name)
-
-    for skill in job_skills:
-        name = canonicalize_skill(skill)
-        if name:
-            job.add(name)
-
+def find_skill_gaps(resume_skills: list[str], job_skills: list[str]) -> list[str]:
+    resume = {canonicalize_skill(skill) for skill in resume_skills if canonicalize_skill(skill)}
+    job = {canonicalize_skill(skill) for skill in job_skills if canonicalize_skill(skill)}
     return sorted(job - resume)
 
 
-def normalize_embedding_text(text: str) -> str:
-    text = text.lower().strip()
-    text = re.sub(r"[^\w\s+#.]", " ", text)
-    return re.sub(r"\s+", " ", text)
-
-
-def make_skill_embedding_index(skills: list[str], aliases: dict[str, str] | None = None) -> dict:
+def make_skill_index(skills: list[str]) -> dict[str, list[str]]:
     clean_skills = []
+    seen = set()
+
     for skill in skills:
-        name = normalize_embedding_text(skill)
-        if name and name not in clean_skills:
+        name = canonicalize_skill(skill)
+        if name and name not in seen:
+            seen.add(name)
             clean_skills.append(name)
 
-    clean_aliases = {}
-    for alias, target in (aliases or {}).items():
-        clean_aliases[normalize_embedding_text(alias)] = normalize_embedding_text(target)
-
-    return {"skills": clean_skills, "aliases": clean_aliases}
+    return {"skills": clean_skills}
 
 
-def get_resume_skill_embedding_index() -> dict:
-    from backend.services.load_dataset import load_skills_dataset
-
-    aliases = {
-        "js": "javascript",
-        "ts": "typescript",
-        "ml": "machine learning",
-        "ai": "artificial intelligence",
-        "py": "python",
-    }
-    return make_skill_embedding_index(load_skills_dataset(), aliases)
+def get_resume_skill_index() -> dict[str, list[str]]:
+    return make_skill_index(extract_skills_from_dataset())
